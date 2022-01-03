@@ -1,0 +1,75 @@
+{
+	"scopeName": "source.twostrokejs-syntax",
+	"patterns": [
+		{
+			"name": "comment",
+			"begin": "\\/\\/",
+			"end": "\\n"
+		},
+		{
+			"name": "entity.token_definition",
+			"begin": "^[A-Z_]+(\\??):\\s+",
+			"beginCaptures": {
+				"0": { "name": "constant.literal.token" },
+				"1": { "name": "keyword.operator" }
+			},
+			"patterns": [
+				{
+					"name": "string.regexp",
+					"begin": "\\/",
+					"patterns": [{ "include": "source.js.regexp" }],
+					"end": "\\/"
+				},
+				{
+					"name": "string",
+					"match": ".+?"
+				}
+			],
+			"end": "\\n"
+		},
+		{
+			"name": "entity.rule_definition",
+			"begin": "^(\\$?[a-z_]+):\\s+",
+			"beginCaptures": {
+				"1": { "name": "variable.other.rule" }
+			},
+			"patterns": [
+				{ "include": "#statement" }
+			],
+			"end": "\\n"
+		}
+	],
+	"repository": {
+		"token_name": {
+			"name": "constant.literal.token",
+			"match": "[A-Z_]+"
+		},
+		"rule_name": {
+			"name": "variable.other.rule",
+			"match": "\\$?[a-z_]+"
+		},
+		"statement": {
+			"patterns": [
+				{ "include": "#group" },
+				{ "include": "#rule_name" },
+				{ "include": "#token_name" },
+				{ "match": "\\s+" },
+				{ "match": "\\s*\\|\\s*", "name": "keyword.operator" },
+				{
+					"match": "(:[a-z_]+)?(\\*?\\??)",
+					"captures": {
+						"1": { "name": "variable.parameter.name" },
+						"2": { "name": "keyword.operator" }
+					}
+				},
+				{ "include": "$self" }
+			]
+		},
+		"group": {
+			"begin": "[\\[(]",
+			"end": "[\\])]",
+			"name": "expression.group",
+			"patterns": [{ "include": "#statement" }]
+		}
+	}
+}
