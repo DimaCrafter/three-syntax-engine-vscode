@@ -4,11 +4,13 @@
 	"description": "TwoStroke.js Syntax Rules file support",
 	"icon": "img/logo.png",
 	"preview": true,
+	"publisher": "DimaCrafter",
 	"author": {
 		"name": "Dmitriy Shiryaev",
 		"email": "backup.dimacrafter@gmail.com"
 	},
 	"repository": "https://github.com/DimaCrafter/twostrokejs-syntax.git",
+	"license": "MIT",
 	"version": "0.1.0",
 	"engines": {
 		"vscode": "^1.63.0"
