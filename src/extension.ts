@@ -1,7 +1,7 @@
 import * as vscode from 'vscode'
 
 export function activate (context: vscode.ExtensionContext) {
-	context.subscriptions.push(vscode.languages.registerDefinitionProvider('twostrokejs-syntax', {
+	context.subscriptions.push(vscode.languages.registerDefinitionProvider('3se-rules', {
 		provideDefinition (doc, pos) {
 			const word = doc.getText(doc.getWordRangeAtPosition(pos, /(:)?\$?[a-z_]+|[A-Z_]+/));
 			if (word[0] == ':') return;
@@ -16,9 +16,9 @@ export function activate (context: vscode.ExtensionContext) {
 		}
 	}));
 
-	context.subscriptions.push(vscode.languages.registerDocumentSymbolProvider('twostrokejs-syntax', { provideDocumentSymbols }));
+	context.subscriptions.push(vscode.languages.registerDocumentSymbolProvider('3se-rules', { provideDocumentSymbols }));
 
-	context.subscriptions.push(vscode.languages.registerCompletionItemProvider('twostrokejs-syntax', {
+	context.subscriptions.push(vscode.languages.registerCompletionItemProvider('3se-rules', {
 		provideCompletionItems (doc, pos) {
 			const word = doc.getText(doc.getWordRangeAtPosition(pos, /(:)?\$?[a-z_]+|[A-Z_]+/));
 			if (word[0] == ':') return;

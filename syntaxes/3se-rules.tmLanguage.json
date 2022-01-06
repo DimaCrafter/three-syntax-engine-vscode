@@ -1,5 +1,5 @@
 {
-	"scopeName": "source.twostrokejs-syntax",
+	"scopeName": "source.3se-rules",
 	"patterns": [
 		{
 			"name": "comment",
@@ -16,9 +16,10 @@
 			"patterns": [
 				{
 					"name": "string.regexp",
-					"begin": "\\/",
-					"patterns": [{ "include": "source.js.regexp" }],
-					"end": "\\/"
+					"match": "\\/[^\\r\\n]+\\/$",
+					"captures": {
+						"0": { "include": "source.js.regexp" }
+					}
 				},
 				{
 					"name": "string",
@@ -29,7 +30,7 @@
 		},
 		{
 			"name": "entity.rule_definition",
-			"begin": "^(\\$?[a-z_]+):\\s+",
+			"begin": "^(\\$?[a-z_][A-Za-z_]+):\\s+",
 			"beginCaptures": {
 				"1": { "name": "variable.other.rule" }
 			},
@@ -42,11 +43,11 @@
 	"repository": {
 		"token_name": {
 			"name": "constant.literal.token",
-			"match": "[A-Z_]+"
+			"match": "[A-Z][A-Z]+"
 		},
 		"rule_name": {
 			"name": "variable.other.rule",
-			"match": "\\$?[a-z_]+"
+			"match": "\\$?[a-z_][A-Za-z_]+"
 		},
 		"statement": {
 			"patterns": [
